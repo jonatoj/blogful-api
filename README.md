@@ -12,7 +12,7 @@ Migrate the database at `DB_URL`, with `npm run migrate:test`
 
 Migrate the tests (at `TEST_DB_URL`), with `npm run migrate:test`
 
-Seed the database 'psql -U owner -d project name -f ./folder/sql file`
+Seed the database `psql -U owner -d project name -f ./folder/sql file`
 
 ## Deploying
 
