@@ -1,8 +1,19 @@
 const express = require("express");
+const xss = require("xss");
 const ArticlesService = require("./articles-service");
 
 const articlesRouter = express.Router();
 const jsonParser = express.json();
+
+const serializeArticle = (article) => ({
+  id: article.id,
+  style: article.style,
+  title: xss(article.title),
+  content: xss(article.content),
+  date_published: article.date_published,
+});
+
+// ----------------------------------------------------
 
 articlesRouter
   .route("/")
@@ -25,12 +36,16 @@ articlesRouter
       }
     }
 
+    // ----------------------------------------------------
+
     ArticlesService.insertArticle(req.app.get("db"), newArticle)
       .then((article) => {
         res.status(201).location(`/articles/${article.id}`).json(article);
       })
       .catch(next);
   });
+
+// ----------------------------------------------------
 
 articlesRouter.route("/:article_id").get((req, res, next) => {
   const knexInstance = req.app.get("db");
@@ -41,7 +56,7 @@ articlesRouter.route("/:article_id").get((req, res, next) => {
           error: { message: `Article doesn't exist` },
         });
       }
-      res.json(article);
+      res.json(serializeArticle(article));
     })
     .catch(next);
 });
