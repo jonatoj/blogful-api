@@ -8,9 +8,9 @@ Start nodemon for the application `npm run dev`
 
 Run the tests `npm test`
 
-Migrate the database at `DB_URL`, with `npm run migrate:test`
+Migrate the database at `DATABASE_URL`, with `npm run migrate:test`
 
-Migrate the tests (at `TEST_DB_URL`), with `npm run migrate:test`
+Migrate the tests (at `TEST_DATABASE_URL`), with `npm run migrate:test`
 
 Seed the database `psql -U 'owner' -d 'project name' -f './folder/sql file'`
 

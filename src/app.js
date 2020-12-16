@@ -4,10 +4,14 @@ const morgan = require("morgan");
 const cors = require("cors");
 const helmet = require("helmet");
 const { NODE_ENV } = require("./config");
+const commentsRouter = require("./comments/comments-router");
+const usersRouter = require("./users/users-router");
 const articlesRouter = require("./articles/articles-router");
 const app = express();
 
 // ------------------------------------------------
+app.use
+app.use("/api/users", usersRouter);
 app.use(
   morgan(NODE_ENV === "production" ? "tiny" : "common", {
     skip: () => NODE_ENV === "test",
